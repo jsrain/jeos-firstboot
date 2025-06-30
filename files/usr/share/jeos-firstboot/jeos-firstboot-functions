@@ -8,6 +8,12 @@ else
 	. /usr/lib/os-release
 fi
 
+# SL-Micro is expected to identify itself the same as SLES for the tools
+# but at the same time user should be presented the SL-Micro product
+# name; replace PRETTY_NAME in this case according to SUSE-specific
+# variables for name and version if they are defined
+[[ -z "$SUSE_SUPPORT_PRODUCT" ]] || [[ -z "$SUSE_SUPPORT_PRODUCT_VERSION" ]] || PRETTY_NAME="$SUSE_SUPPORT_PRODUCT $SUSE_SUPPORT_PRODUCT_VERSION"
+
 stty_size() {
 	set -- $(stty size); LINES=$1; COLUMNS=$2
 	# stty size can return zero when not ready or
